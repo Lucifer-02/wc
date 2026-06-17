@@ -1,0 +1,11 @@
+[project]
+name = "wc"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "bar-chart-race>=0.1.0",
+    "openpyxl>=3.1.5",
+    "pandas==2.2.2",
+]
