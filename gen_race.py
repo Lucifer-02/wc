@@ -1,3 +1,8 @@
+import multiprocessing as mp
+import os
+import shutil
+import subprocess
+
 import matplotlib
 import numpy as np
 import polars as pl
@@ -5,7 +10,6 @@ import polars as pl
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-from matplotlib.animation import FFMpegWriter, FuncAnimation
 
 # ── 1. Đọc file excel ──────────────────────────────────────────────────────────
 df = pl.read_excel("wc.xlsx", has_header=False)
@@ -55,8 +59,8 @@ n_periods = df_cumsum.height
 match_list = ["Bắt đầu"] + indices
 
 # ── 3. Cấu hình ───────────────────────────────────────────────────────────────
-STEPS = 40  # tăng số frame nội suy để chuyển động chậm hơn (2 giây/nhịp), dễ theo dõi
-FPS = 30  # tốc độ chuẩn để xem mượt mà
+STEPS = 50  # tăng số frame nội suy để chuyển động chậm hơn (2 giây/nhịp), dễ theo dõi
+FPS = 50  # tốc độ chuẩn để xem mượt mà
 HOLD_S = 3  # giữ frame cuối bao nhiêu giây
 
 
@@ -93,19 +97,64 @@ all_ranks = [compute_ranks(p) for p in range(n_periods)]
 tab10 = plt.get_cmap("tab10")
 dark2 = plt.get_cmap("Dark2")
 high_contrast_colors = [tab10(i) for i in range(10)] + [dark2(i) for i in range(8)]
-player_colors = [high_contrast_colors[i % len(high_contrast_colors)] for i in range(n_players)]
+player_colors = [
+    high_contrast_colors[i % len(high_contrast_colors)] for i in range(n_players)
+]
 
 # ── 7. Figure ─────────────────────────────────────────────────────────────────
 plt.rcParams["font.sans-serif"] = ["DejaVu Sans", "Arial", "sans-serif"]
-fig, ax = plt.subplots(figsize=(8, 5.3), dpi=150)
+fig, ax = plt.subplots(figsize=(8, 5.3), dpi=100)
 # Tên đã dời sang phải đỉnh bar nên có thể thu nhỏ lề trái
 fig.subplots_adjust(top=0.90, left=0.05, right=0.95, bottom=0.08)
 
 
 # ── 8. Hàm vẽ frame ───────────────────────────────────────────────────────────
-def draw_frame(period_idx, step):
-    ax.clear()
+# Khởi tạo trước các đối tượng đồ họa (Artists) để không phải vẽ lại từ đầu ở mỗi frame
+bar_collection = ax.barh(
+    range(n_players),
+    [0] * n_players,
+    color=player_colors,
+    edgecolor="white",
+    linewidth=0.5,
+    height=0.75,
+)
 
+player_texts = []
+for i in range(n_players):
+    txt = ax.text(
+        0,
+        0,
+        "",
+        va="center",
+        ha="left",
+        fontsize=8,
+        color=player_colors[i],
+        fontweight="bold",
+    )
+    player_texts.append(txt)
+
+recent_matches_text = ax.text(
+    0.98,
+    0.02,
+    "",
+    transform=ax.transAxes,
+    ha="right",
+    va="bottom",
+    fontsize=9,
+    color="#444444",
+    linespacing=1.5,
+)
+
+# Cấu hình tĩnh cho trục toạ độ
+ax.set_ylim(-0.6, n_players - 0.4)
+ax.set_yticks([])  # ẩn ytick
+ax.tick_params(axis="x", labelsize=8)
+ax.grid(axis="x", linestyle="--", alpha=0.35)
+ax.set_title("Đua Top Búng Tai", fontsize=14, pad=10, fontweight="bold")
+ax.xaxis.set_major_locator(ticker.MultipleLocator(20))
+
+
+def draw_frame(period_idx, step):
     cur_vals = np.array(df_cumsum.row(period_idx), dtype=float)
     cur_ranks = all_ranks[period_idx]
 
@@ -127,57 +176,26 @@ def draw_frame(period_idx, step):
         interp_ranks = prev_ranks + t_pos * (cur_ranks - prev_ranks)
 
     x_max = max(interp_vals.max(), 1)
+    # Điều chỉnh lại xlim vì tên đã dời sang bên phải đỉnh bar
+    ax.set_xlim(0, x_max * 1.25)
 
-    # Vẽ từng bar theo vị trí Y nội suy
+    # Cập nhật thông số cho từng bar thay vì xóa đi vẽ lại
     for i, name in enumerate(player_names):
         y = interp_ranks[i]
         val = interp_vals[i]
-        ax.barh(
-            y,
-            val,
-            color=player_colors[i],
-            edgecolor="white",
-            linewidth=0.5,
-            height=0.75,
-        )
 
-        # Tên người chơi và điểm đặt ngay trên đỉnh bar (bên phải)
-        ax.text(
-            val + x_max * 0.008,
-            y,
-            f"{name}: {val:.0f}",
-            va="center",
-            ha="left",
-            fontsize=8,
-            color=player_colors[i],
-            fontweight="bold",
-        )
+        # Cập nhật chiều dài và vị trí Y của bar (y là toạ độ tâm, set_y cần toạ độ đáy)
+        bar_collection[i].set_width(val)
+        bar_collection[i].set_y(y - 0.375)
 
-    ax.xaxis.set_major_locator(ticker.MultipleLocator(20))
-    # Điều chỉnh lại xlim vì tên đã dời sang bên phải đỉnh bar
-    ax.set_xlim(0, x_max * 1.25)
-    ax.set_ylim(-0.6, n_players - 0.4)
-    ax.set_yticks([])  # ẩn ytick mặc định, đã tự vẽ label
-    ax.tick_params(axis="x", labelsize=8)
-    ax.grid(axis="x", linestyle="--", alpha=0.35)
-    ax.set_title(
-        "Đua Top Tổng Điểm Qua Các Trận Bóng", fontsize=14, pad=10, fontweight="bold"
-    )
+        # Cập nhật vị trí và nội dung text
+        player_texts[i].set_position((val + x_max * 0.008, y))
+        player_texts[i].set_text(f"{name}: {val:.0f}")
 
-    # Danh sách 6 trận gần nhất
+    # Cập nhật danh sách 6 trận gần nhất
     start_idx = max(0, period_idx - 5)
     recent = match_list[start_idx : period_idx + 1]
-    ax.text(
-        0.98,
-        0.02,
-        "\n".join(recent),
-        transform=ax.transAxes,
-        ha="right",
-        va="bottom",
-        fontsize=9,
-        color="#444444",
-        linespacing=1.5,
-    )
+    recent_matches_text.set_text("\n".join(recent))
 
 
 # ── 9. Danh sách frames ───────────────────────────────────────────────────────
@@ -193,18 +211,54 @@ total = len(frames)
 print(f"Tổng số frame: {total} (~{total / FPS:.1f}s @ {FPS}fps)")
 
 
-def animate(frame_data):
-    draw_frame(*frame_data)
+# ── 10. Render bằng Multiprocessing ───────────────────────────────────────────
+def render_chunk(args):
+    chunk_idx, frames_chunk, temp_dir = args
+    for local_idx, (global_idx, period_idx, step) in enumerate(frames_chunk):
+        draw_frame(period_idx, step)
+        frame_path = os.path.join(temp_dir, f"frame_{global_idx:05d}.png")
+        fig.savefig(frame_path, facecolor="white")
 
 
-anim = FuncAnimation(fig, animate, frames=frames, interval=1000 // FPS, repeat=False)
+if __name__ == "__main__":
+    temp_dir = "temp_frames"
+    os.makedirs(temp_dir, exist_ok=True)
 
-print("Đang render MP4... (có thể mất vài phút)")
-writer = FFMpegWriter(fps=FPS, bitrate=1500)
-anim.save(
-    "bar_chart_race_test.mp4",
-    writer=writer,
-    savefig_kwargs={"facecolor": "white"},
-)
-plt.close(fig)
-print("Đã tạo thành công bar_chart_race_test.mp4!")
+    indexed_frames = [(i, p, s) for i, (p, s) in enumerate(frames)]
+
+    num_cores = max(1, mp.cpu_count() - 4)
+    chunk_size = (total + num_cores - 1) // num_cores
+
+    chunks = []
+    for i in range(num_cores):
+        chunk = indexed_frames[i * chunk_size : (i + 1) * chunk_size]
+        if chunk:
+            chunks.append((i, chunk, temp_dir))
+
+    print(f"Đang render {total} frames bằng {num_cores} luồng (Multiprocessing)...")
+    with mp.Pool(num_cores) as pool:
+        pool.map(render_chunk, chunks)
+
+    print("Gộp các frames thành MP4 bằng FFmpeg...")
+    ffmpeg_cmd = [
+        "ffmpeg",
+        "-y",
+        "-framerate",
+        str(FPS),
+        "-i",
+        os.path.join(temp_dir, "frame_%05d.png"),
+        "-vf",
+        "pad=ceil(iw/2)*2:ceil(ih/2)*2",  # Tự động làm tròn kích thước ảnh thành số chẵn
+        "-c:v",
+        "libx264",
+        "-pix_fmt",
+        "yuv420p",
+        "-b:v",
+        "3000k",
+        "race.mp4",
+    ]
+    # Bỏ chặn stderr để nếu có lỗi FFmpeg thì sẽ báo chi tiết trên màn hình
+    subprocess.run(ffmpeg_cmd, check=True, stdout=subprocess.DEVNULL)
+
+    shutil.rmtree(temp_dir)
+    print("Đã tạo thành công bar_chart_race_test.mp4 cực nhanh!")

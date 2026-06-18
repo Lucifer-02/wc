@@ -5,8 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "bar-chart-race>=0.1.0",
     "fastexcel>=0.20.2",
+    "matplotlib>=3.11.0",
     "openpyxl>=3.1.5",
     "polars>=1.41.2",
     "pyarrow>=24.0.0",
