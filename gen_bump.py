@@ -104,13 +104,13 @@ def main():
     
     # --- 1. Bump Chart ---
     base_bump = alt.Chart(df).encode(
-        x=alt.X('Match_Index:O', title='Thứ tự trận', axis=alt.Axis(labelAngle=0)),
-        y=alt.Y('Rank:O', title='Hạng'),
+        x=alt.X('Match_Index:Q', title='Thứ tự trận', axis=alt.Axis(labelAngle=0, tickMinStep=1, format='d')),
+        y=alt.Y('Rank:Q', title='Hạng', scale=alt.Scale(reverse=True), axis=alt.Axis(tickMinStep=1, format='d')),
         color=alt.Color('Player:N', scale=color_scale, title='Người chơi'),
         tooltip=[
             alt.Tooltip('Player:N', title='Người chơi'),
             alt.Tooltip('Match:N', title='Trận đấu'),
-            alt.Tooltip('Rank:O', title='Hạng'),
+            alt.Tooltip('Rank:Q', title='Hạng'),
             alt.Tooltip('Cumulative_Score:Q', title='Điểm số tích lũy')
         ]
     )
