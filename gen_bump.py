@@ -122,11 +122,24 @@ def main():
         strokeWidth=alt.condition(highlight_cond, alt.value(4), alt.value(2))
     ).add_params(click)
     
+    alt.theme.enable('dark')
     final_bump = (bump_lines + hover_catch_bump).properties(
         width='container',
-        height=600
-    ).configure_view(strokeWidth=0).configure_axis(
-        grid=True, gridOpacity=0.3
+        height=600,
+        background='#1f2937'
+    ).configure_view(
+        strokeWidth=0
+    ).configure_axis(
+        grid=True, 
+        gridOpacity=0.3,
+        gridColor='#374151',
+        domainColor='#374151',
+        tickColor='#374151',
+        labelColor='#9ca3af',
+        titleColor='#f9fafb'
+    ).configure_legend(
+        labelColor='#9ca3af', 
+        titleColor='#f9fafb'
     ).interactive()
     
     final_bump.save('bump_chart_altair.html')

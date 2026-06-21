@@ -1,41 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bảng Xếp Hạng Giải Đấu</title>
-    <meta name="description" content="Thống kê và trực quan hóa thứ hạng người chơi qua các trận đấu.">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body>
+    <meta
+      name="description"
+      content="Thống kê và trực quan hóa thứ hạng người chơi qua các trận đấu."
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>Bảng Xếp Hạng Giải Đấu</h1>
-            <p class="subtitle">Theo dõi sự bứt phá của các tuyển thủ qua từng vòng đấu</p>
-        </header>
+      <header>
+        <h1>Bảng Xếp Hạng Giải Đấu</h1>
+      </header>
 
-        <main>
-            <section class="content-section">
-                <p class="instruction">Hover vào đường dây hoặc Shift+Click chú thích để làm nổi bật người chơi.</p>
-                <div class="media-container chart-wrapper">
-                    <iframe src="bump_chart_altair.html" title="Interactive Bump Chart" scrolling="auto"></iframe>
-                </div>
-            </section>
+      <main>
+        <section class="content-section">
+          <p class="instruction">
+            Hover vào line hoặc Shift+Click để làm highlight nhiều người chơi.
+          </p>
+          <div class="media-container chart-wrapper">
+            <iframe
+              src="bump_chart_altair.html"
+              title="Interactive Bump Chart"
+              scrolling="auto"
+            ></iframe>
+          </div>
+        </section>
 
-            <section class="content-section">
-                <div class="media-container video-wrapper">
-                    <video controls width="100%" poster="https://via.placeholder.com/800x450/eee/999?text=Video+is+loading...">
-                        <source src="race.mp4" type="video/mp4">
-                        Trình duyệt của bạn không hỗ trợ thẻ video.
-                    </video>
-                </div>
-            </section>
-        </main>
+        <section class="content-section">
+          <div class="media-container video-wrapper">
+            <video
+              controls
+              width="100%"
+              poster="https://via.placeholder.com/800x450/eee/999?text=Video+is+loading..."
+            >
+              <source src="race.mp4" type="video/mp4" />
+              Trình duyệt của bạn không hỗ trợ thẻ video.
+            </video>
+          </div>
+        </section>
+      </main>
 
-        <footer>
-            <p>&copy; 2026 Bảng Xếp Hạng</p>
-        </footer>
+      <footer>
+        <p>&copy; 2026 Bảng Xếp Hạng</p>
+      </footer>
     </div>
-</body>
+  </body>
 </html>
