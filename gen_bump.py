@@ -159,7 +159,7 @@ def main():
     alt.theme.enable("dark")
     final_bump = (
         (bump_lines + hover_catch_bump)
-        .properties(width="container", height=600, background="#1f2937")
+        .properties(width="container", height=500, background="#1f2937")
         .configure_view(strokeWidth=0)
         .configure_axis(
             grid=True,
