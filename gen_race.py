@@ -224,10 +224,10 @@ def render_chunk(args):
 def main():
     # --- Config ---
     STEPS = 50
-    FPS = 50
+    FPS = 30
     HOLD_S = 3
     EXCEL_FILE = "wc.xlsx"
-    OUT_VIDEO = "race.mp4"
+    OUT_VIDEO = "race.webm"
     TEMP_DIR = "temp_frames"
 
     # --- Data Preparation ---
@@ -289,9 +289,11 @@ def main():
         "-vf",
         "pad=ceil(iw/2)*2:ceil(ih/2)*2",
         "-c:v",
-        "libx264",
+        "libvpx-vp9",
         "-crf",
-        "23",
+        "35",
+        "-b:v",
+        "0",
         "-pix_fmt",
         "yuv420p",
         OUT_VIDEO,

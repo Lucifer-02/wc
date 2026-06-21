@@ -98,7 +98,7 @@ def main():
     records, player_names = load_data_for_altair(filepath)
     df = pl.DataFrame(records)
 
-    match_domain = (
+    (
         df.group_by("Match")
         .agg(pl.col("Match_Index").min())
         .sort("Match_Index")["Match"]
@@ -125,7 +125,14 @@ def main():
             "Rank:Q",
             title="Hạng",
             scale=alt.Scale(reverse=True, domain=[1, 22]),
-            axis=alt.Axis(tickMinStep=1, format="d", titleAngle=0, titleAlign="right", titleY=-15, titleX=0),
+            axis=alt.Axis(
+                tickMinStep=1,
+                format="d",
+                titleAngle=0,
+                titleAlign="right",
+                titleY=-15,
+                titleX=0,
+            ),
         ),
         color=alt.Color("Player:N", scale=color_scale, title="Người chơi"),
         tooltip=[
@@ -136,14 +143,12 @@ def main():
         ],
     )
 
-    hover_catch_bump = base_bump.mark_line(strokeWidth=20, opacity=0, clip=True).add_params(hover)
+    hover_catch_bump = base_bump.mark_line(
+        strokeWidth=20, opacity=0, clip=True
+    ).add_params(hover)
 
     bump_lines = (
-        base_bump.mark_line(
-            point=True,
-            interpolate="monotone",
-            clip=True
-        )
+        base_bump.mark_line(point=True, interpolate="monotone", clip=True)
         .encode(
             opacity=alt.condition(highlight_cond, alt.value(1.0), alt.value(0.1)),
             strokeWidth=alt.condition(highlight_cond, alt.value(4), alt.value(2)),
