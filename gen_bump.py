@@ -124,7 +124,7 @@ def main():
     
     final_bump = (bump_lines + hover_catch_bump).properties(
         width='container',
-        height=400
+        height=600
     ).configure_view(strokeWidth=0).configure_axis(
         grid=True, gridOpacity=0.3
     ).interactive()
