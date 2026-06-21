@@ -118,13 +118,14 @@ def main():
         x=alt.X(
             "Match_Index:Q",
             title="Thứ tự trận",
+            scale=alt.Scale(domain=[1, max_match_idx]),
             axis=alt.Axis(labelAngle=0, tickMinStep=1, format="d"),
         ),
         y=alt.Y(
             "Rank:Q",
             title="Hạng",
-            scale=alt.Scale(reverse=True),
-            axis=alt.Axis(tickMinStep=1, format="d"),
+            scale=alt.Scale(reverse=True, domain=[1, 22]),
+            axis=alt.Axis(tickMinStep=1, format="d", titleAngle=0, titleAlign="right", titleY=-15, titleX=0),
         ),
         color=alt.Color("Player:N", scale=color_scale, title="Người chơi"),
         tooltip=[
@@ -135,12 +136,13 @@ def main():
         ],
     )
 
-    hover_catch_bump = base_bump.mark_line(strokeWidth=20, opacity=0).add_params(hover)
+    hover_catch_bump = base_bump.mark_line(strokeWidth=20, opacity=0, clip=True).add_params(hover)
 
     bump_lines = (
         base_bump.mark_line(
             point=True,
-            interpolate="monotone",  # hoặc "basis", "cardinal", ...
+            interpolate="monotone",
+            clip=True
         )
         .encode(
             opacity=alt.condition(highlight_cond, alt.value(1.0), alt.value(0.1)),
