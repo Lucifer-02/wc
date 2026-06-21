@@ -223,9 +223,9 @@ def render_chunk(args):
 
 def main():
     # --- Config ---
-    STEPS = 50
+    STEPS = 25
     FPS = 30
-    HOLD_S = 3
+    HOLD_S = 1.5
     EXCEL_FILE = "wc.xlsx"
     OUT_VIDEO = "race.webm"
     TEMP_DIR = "temp_frames"
