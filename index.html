@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Xếp Hạng Giải Đấu</title>
+    <meta name="description" content="Thống kê và trực quan hóa thứ hạng người chơi qua các trận đấu với biểu đồ tương tác và video bar chart race.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero">
+        <div class="glass-panel">
+            <h1 id="main-title">Bảng Xếp Hạng Giải Đấu</h1>
+            <p id="main-desc">Theo dõi sự bứt phá của các tuyển thủ qua từng vòng đấu</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Bump Chart Section -->
+        <section id="bump-chart-section" class="card">
+            <h2 id="bump-title">Biểu Đồ Xếp Hạng (Bump Chart)</h2>
+            <p class="section-desc">Tương tác trực tiếp: Hover vào đường dây hoặc Click vào chú thích (Legend) để làm nổi bật người chơi.</p>
+            <div class="chart-container">
+                <iframe src="bump_chart_altair.html" title="Interactive Bump Chart"></iframe>
+            </div>
+        </section>
+
+        <!-- Video Race Section -->
+        <section id="video-race-section" class="card">
+            <h2 id="video-title">Diễn Biến Điểm Số (Bar Chart Race)</h2>
+            <p class="section-desc">Video diễn biến cuộc đua điểm số qua từng trận đấu vô cùng gay cấn.</p>
+            <div class="video-container">
+                <video controls width="100%" poster="https://via.placeholder.com/800x450/111/333?text=Video+is+loading...">
+                    <source src="race.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ thẻ video.
+                </video>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Bảng Xếp Hạng Giải Đấu</p>
+    </footer>
+</body>
+</html>
