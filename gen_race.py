@@ -250,6 +250,9 @@ def main():
 
     # --- Frames Generation ---
     frames = [(0, 0)]
+    start_hold_frames = int(10 * FPS)
+    frames += [(0, 0)] * start_hold_frames
+
     for p in range(1, n_periods):
         for s in range(1, STEPS + 1):
             frames.append((p, s))
