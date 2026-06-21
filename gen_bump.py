@@ -123,14 +123,8 @@ def main():
     ).add_params(click)
     
     final_bump = (bump_lines + hover_catch_bump).properties(
-        width=800,
-        height=400,
-        title=alt.TitleParams(
-            text='Bump Chart: Xếp hạng qua các trận',
-            subtitle='Ghi chú: Giữ phím Shift + Click vào Legend để làm nổi bật nhiều người chơi',
-            subtitleColor='gray',
-            subtitleFontSize=12
-        )
+        width='container',
+        height=400
     ).configure_view(strokeWidth=0).configure_axis(
         grid=True, gridOpacity=0.3
     ).interactive()
