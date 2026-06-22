@@ -228,7 +228,7 @@ def main():
     HOLD_S = 1.5
     EXCEL_FILE = "wc.xlsx"
     OUT_VIDEO = "race.webm"
-    AUDIO_FILE = "Welcome to Planet Urf ｜ Login Screen - League of Legends [qYIiy03eGE0].opus"
+    AUDIO_FILE = "./audio.opus"
     TEMP_DIR = "temp_frames"
 
     # --- Data Preparation ---
