@@ -227,7 +227,7 @@ def main():
     FPS = 30
     HOLD_S = 1.5
     EXCEL_FILE = "wc.xlsx"
-    OUT_VIDEO = "race.webm"
+    OUT_VIDEO = "race.mp4"
     AUDIO_FILE = "./audio.opus"
     TEMP_DIR = "temp_frames"
 
@@ -300,17 +300,19 @@ def main():
         "-vf",
         "pad=ceil(iw/2)*2:ceil(ih/2)*2",
         "-c:v",
-        "libvpx-vp9",
+        "libx264",
+        "-preset",
+        "medium",
         "-crf",
-        "35",
-        "-b:v",
-        "0",
+        "23",
         "-pix_fmt",
         "yuv420p",
+        "-movflags",
+        "+faststart",
     ])
 
     if has_audio:
-        ffmpeg_cmd.extend(["-c:a", "copy", "-shortest"])
+        ffmpeg_cmd.extend(["-c:a", "aac", "-b:a", "128k", "-shortest"])
 
     ffmpeg_cmd.append(OUT_VIDEO)
 
