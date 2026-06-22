@@ -228,6 +228,7 @@ def main():
     HOLD_S = 1.5
     EXCEL_FILE = "wc.xlsx"
     OUT_VIDEO = "race.webm"
+    AUDIO_FILE = "Welcome to Planet Urf ｜ Login Screen - League of Legends [qYIiy03eGE0].opus"
     TEMP_DIR = "temp_frames"
 
     # --- Data Preparation ---
@@ -289,6 +290,13 @@ def main():
         str(FPS),
         "-i",
         os.path.join(TEMP_DIR, "frame_%05d.png"),
+    ]
+
+    has_audio = os.path.exists(AUDIO_FILE)
+    if has_audio:
+        ffmpeg_cmd.extend(["-i", AUDIO_FILE])
+
+    ffmpeg_cmd.extend([
         "-vf",
         "pad=ceil(iw/2)*2:ceil(ih/2)*2",
         "-c:v",
@@ -299,8 +307,13 @@ def main():
         "0",
         "-pix_fmt",
         "yuv420p",
-        OUT_VIDEO,
-    ]
+    ])
+
+    if has_audio:
+        ffmpeg_cmd.extend(["-c:a", "copy", "-shortest"])
+
+    ffmpeg_cmd.append(OUT_VIDEO)
+
     subprocess.run(ffmpeg_cmd, check=True, stdout=subprocess.DEVNULL)
 
     shutil.rmtree(TEMP_DIR)
