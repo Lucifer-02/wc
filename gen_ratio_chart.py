@@ -152,6 +152,35 @@ def main():
     final_chart.save(output_file)
     print(f"Đã tạo {output_file}")
 
+    # Generate static thumbnail without interactive parameters
+    static_lines = base.mark_line(point=True, interpolate="monotone", clip=True, strokeWidth=2)
+    static_chart = (
+        static_lines.properties(
+            width=800,
+            height=450,
+            background="#1f2937",
+        )
+        .configure_view(strokeWidth=0)
+        .configure_axis(
+            grid=True,
+            gridOpacity=0.3,
+            gridColor="#374151",
+            domainColor="#374151",
+            tickColor="#374151",
+            labelColor="#9ca3af",
+            titleColor="#f9fafb",
+        )
+        .configure_legend(labelColor="#9ca3af", titleColor="#f9fafb")
+        .configure_title(color="#f9fafb", fontSize=20, anchor="middle", dy=-10)
+    )
+    
+    thumb_file = "chart_thumbnail.png"
+    try:
+        static_chart.save(thumb_file, format="png", ppi=144)
+        print(f"Đã tạo {thumb_file}")
+    except Exception as e:
+        print(f"Không thể tạo {thumb_file}: {e}")
+
 
 if __name__ == "__main__":
     main()

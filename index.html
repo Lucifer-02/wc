@@ -9,7 +9,7 @@
       name="description"
       content="Bảng xếp hạng và biểu đồ tỉ lệ đoán đúng kết quả World Cup 2026 giữa các người chơi."
     />
-    <link rel="stylesheet" href="style.css?v=1.1" />
+    <link rel="stylesheet" href="style.css?v=1.2" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -43,7 +43,12 @@
           Shift+Click &lt;tên người chơi&gt; để highlight nhiều người chơi.
           </p>
           <div class="mobile-warning">
-            <p>Vui lòng mở bằng máy tính để xem biểu đồ chi tiết.</p>
+            <div class="chart-thumbnail-container">
+              <img src="chart_thumbnail.png" alt="Chart Preview" class="chart-thumbnail-img" loading="lazy" />
+              <div class="warning-overlay">
+                <p>Vui lòng mở bằng máy tính để xem biểu đồ chi tiết.</p>
+              </div>
+            </div>
           </div>
           <div class="media-container chart-wrapper">
             <iframe

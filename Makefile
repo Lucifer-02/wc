@@ -3,9 +3,9 @@
 PYTHON = .venv/bin/python
 EXCEL_FILE = wc.xlsx
 
-.PHONY: all ratio race thumbnail clean format
+.PHONY: all ratio race thumbnail chart_thumbnail clean format
 
-all: ratio race thumbnail
+all: ratio race thumbnail chart_thumbnail
 
 ratio: ratio_chart_altair.html
 
@@ -13,7 +13,9 @@ race: race.mp4
 
 thumbnail: thumbnail.jpg
 
-ratio_chart_altair.html: gen_ratio_chart.py $(EXCEL_FILE)
+chart_thumbnail: chart_thumbnail.png
+
+ratio_chart_altair.html chart_thumbnail.png: gen_ratio_chart.py $(EXCEL_FILE)
 	$(PYTHON) gen_ratio_chart.py
 
 race.mp4: gen_race.py $(EXCEL_FILE)
@@ -28,5 +30,5 @@ format:
 	npx -y prettier --write "**/*.{html,css,js,json,md}"
 
 clean:
-	rm -f ratio_chart_altair.html race.mp4 thumbnail.jpg
+	rm -f ratio_chart_altair.html race.mp4 thumbnail.jpg chart_thumbnail.png
 	rm -rf temp_frames __pycache__ .mypy_cache
