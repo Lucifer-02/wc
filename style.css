@@ -159,8 +159,8 @@ footer {
     aspect-ratio: 16 / 9;
   }
 
-  .chart-wrapper {
-    display: none;
+  .media-container.chart-wrapper {
+    display: none !important;
   }
 }
 
