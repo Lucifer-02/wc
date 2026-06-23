@@ -139,7 +139,12 @@ def main():
             labelColor="#9ca3af",
             titleColor="#f9fafb",
         )
-        .configure_legend(labelColor="#9ca3af", titleColor="#f9fafb")
+        .configure_legend(
+            labelColor="#9ca3af",
+            titleColor="#f9fafb",
+            orient="bottom",
+            columns=3
+        )
         .configure_title(color="#f9fafb", fontSize=20, anchor="middle", dy=-10)
     )
 
