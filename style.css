@@ -46,9 +46,33 @@ h1 {
 h2.section-title {
   font-size: 1.5rem;
   font-weight: 600;
-  text-align: center;
-  margin-bottom: 1rem;
   color: var(--text-main);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.action-btn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+  background-color: #2563eb;
 }
 
 .subtitle {
@@ -121,6 +145,15 @@ footer {
 
   header {
     margin-bottom: 2rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  h2.section-title {
+    text-align: center;
   }
 
   .content-section {

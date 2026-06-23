@@ -22,7 +22,13 @@
 
       <main>
         <section class="content-section">
-          <h2 class="section-title">ĐUA</h2>
+          <div class="section-header">
+            <h2 class="section-title">ĐUA</h2>
+            <button class="action-btn" onclick="openFullscreenAndRotate(document.querySelector('.video-wrapper video'))">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+              Phóng to & Xoay
+            </button>
+          </div>
           <div class="media-container video-wrapper">
             <video
               controls
@@ -38,6 +44,13 @@
         </section>
 
         <section class="content-section">
+          <div class="section-header">
+            <h2 class="section-title">TỈ LỆ CHÍNH XÁC</h2>
+            <button class="action-btn" onclick="openFullscreenAndRotate(document.querySelector('.chart-wrapper'))">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+              Phóng to & Xoay
+            </button>
+          </div>
           <p class="instruction">
           Shift+Click <tên người chơi> để highlight nhiều người chơi.
           </p>
@@ -55,5 +68,25 @@
         <p>&copy; 2026 Bảng Xếp Hạng</p>
       </footer>
     </div>
+
+    <script>
+      function openFullscreenAndRotate(element) {
+        let requestMethod = element.requestFullscreen || element.webkitRequestFullscreen || element.msRequestFullscreen;
+
+        if (requestMethod) {
+          requestMethod.call(element).then(() => {
+            if (screen.orientation && screen.orientation.lock) {
+              screen.orientation.lock('landscape').catch(function(error) {
+                console.log("Orientation lock not supported or failed: ", error);
+              });
+            }
+          }).catch(err => {
+            console.log(`Lỗi khi mở toàn màn hình: ${err.message}`);
+          });
+        } else {
+          alert("Trình duyệt của bạn không hỗ trợ tính năng toàn màn hình.");
+        }
+      }
+    </script>
   </body>
 </html>
