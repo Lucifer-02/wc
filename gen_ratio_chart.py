@@ -141,7 +141,6 @@ def main():
         )
         .configure_legend(labelColor="#9ca3af", titleColor="#f9fafb")
         .configure_title(color="#f9fafb", fontSize=20, anchor="middle", dy=-10)
-        .interactive()
     )
 
     output_file = "ratio_chart_altair.html"
