@@ -1,6 +1,7 @@
 import altair as alt
 import polars as pl
 
+
 def main():
     filepath = "wc.xlsx"
     df = pl.read_excel(filepath, has_header=False)
@@ -19,18 +20,18 @@ def main():
 
     data_rows = []
     indices = []
-    
+
     for i in range(2, df.height):
         match_name = df.item(i, 0)
         if match_name is None or str(match_name).strip().lower() in ("nan", ""):
             continue
-            
+
         sum_val = df.item(i, sum_col_idx)
         try:
             sum_num = float(sum_val)
         except (ValueError, TypeError):
             sum_num = 0.0
-            
+
         # Bỏ qua các trận chưa diễn ra (Sum == 0)
         if sum_num == 0:
             continue
@@ -50,40 +51,44 @@ def main():
         indices.append(str(match_name).strip())
 
     n_players = len(player_names)
-    
+
     records = []
     cumulative_correct = [0] * n_players
-    
+
     # Thêm điểm Bắt đầu
     for j, player in enumerate(player_names):
-        records.append({
-            "Match": "Bắt đầu",
-            "Match_Index": 0,
-            "Player": player,
-            "Correct_Ratio": 0.0
-        })
+        records.append(
+            {
+                "Match": "Bắt đầu",
+                "Match_Index": 0,
+                "Player": player,
+                "Correct_Ratio": 0.0,
+            }
+        )
 
     for i, match in enumerate(indices):
         match_idx = i + 1
         corrects = data_rows[i]
-        
+
         for j in range(n_players):
             cumulative_correct[j] += corrects[j]
             ratio = (cumulative_correct[j] / match_idx) * 100.0
-            
-            records.append({
-                "Match": match,
-                "Match_Index": match_idx,
-                "Player": player_names[j],
-                "Correct_Ratio": ratio
-            })
+
+            records.append(
+                {
+                    "Match": match,
+                    "Match_Index": match_idx,
+                    "Player": player_names[j],
+                    "Correct_Ratio": ratio,
+                }
+            )
 
     df_out = pl.DataFrame(records)
-    
+
     max_match_idx = df_out["Match_Index"].max()
 
     color_scale = alt.Scale(scheme="category10")
-    
+
     hover = alt.selection_point(fields=["Player"], on="pointerover", clear="pointerout")
     click = alt.selection_point(fields=["Player"], bind="legend")
     highlight_cond = hover & click
@@ -105,13 +110,11 @@ def main():
         tooltip=[
             alt.Tooltip("Player:N", title="Người chơi"),
             alt.Tooltip("Match:N", title="Trận đấu"),
-            alt.Tooltip("Correct_Ratio:Q", title="Tỉ lệ đúng (%)", format=".1f"),
+            alt.Tooltip("Correct_Ratio:Q", title="Tỉ lệ đúng", format=".1f"),
         ],
     )
 
-    hover_catch = base.mark_line(
-        strokeWidth=20, opacity=0, clip=True
-    ).add_params(hover)
+    hover_catch = base.mark_line(strokeWidth=20, opacity=0, clip=True).add_params(hover)
 
     lines = (
         base.mark_line(point=True, interpolate="monotone", clip=True)
@@ -125,7 +128,7 @@ def main():
     alt.theme.enable("dark")
     final_chart = (
         (lines + hover_catch)
-        .properties(width="container", height=500, background="#1f2937", title="Sự thay đổi tỉ lệ đoán đúng (%) của người chơi")
+        .properties(width="container", height=500, background="#1f2937")
         .configure_view(strokeWidth=0)
         .configure_axis(
             grid=True,
@@ -144,6 +147,7 @@ def main():
     output_file = "ratio_chart_altair.html"
     final_chart.save(output_file)
     print(f"Đã tạo {output_file}")
+
 
 if __name__ == "__main__":
     main()
