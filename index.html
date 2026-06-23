@@ -22,13 +22,7 @@
 
       <main>
         <section class="content-section">
-          <div class="section-header">
-            <h2 class="section-title">ĐUA</h2>
-            <button class="action-btn" onclick="openFullscreenAndRotate(document.querySelector('.video-wrapper'), true)">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
-              Phóng to & Xoay
-            </button>
-          </div>
+          <h2 class="section-title">ĐUA</h2>
           <div class="media-container video-wrapper">
             <video
               controls
@@ -44,13 +38,6 @@
         </section>
 
         <section class="content-section">
-          <div class="section-header">
-            <h2 class="section-title">TỈ LỆ CHÍNH XÁC</h2>
-            <button class="action-btn" onclick="openFullscreenAndRotate(document.querySelector('.chart-wrapper'), false)">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
-              Phóng to & Xoay
-            </button>
-          </div>
           <p class="instruction">
           Shift+Click <tên người chơi> để highlight nhiều người chơi.
           </p>
@@ -68,59 +55,5 @@
         <p>&copy; 2026 Bảng Xếp Hạng</p>
       </footer>
     </div>
-
-    <script>
-      function openFullscreenAndRotate(wrapper, isVideo) {
-        let videoEl = isVideo ? wrapper.querySelector('video') : null;
-        let requestMethod = wrapper.requestFullscreen || wrapper.webkitRequestFullscreen || wrapper.msRequestFullscreen;
-
-        if (requestMethod) {
-          // Try standard API
-          let promise = requestMethod.call(wrapper);
-          if (promise !== undefined) {
-            promise.then(() => {
-              if (screen.orientation && screen.orientation.lock) {
-                screen.orientation.lock('landscape').catch(() => {});
-              }
-            }).catch(err => {
-              fallbackFullscreen(wrapper, videoEl);
-            });
-          } else {
-            // For older browsers that don't return a promise
-            setTimeout(() => {
-              if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                fallbackFullscreen(wrapper, videoEl);
-              }
-            }, 500);
-          }
-        } else {
-          fallbackFullscreen(wrapper, videoEl);
-        }
-      }
-
-      function fallbackFullscreen(wrapper, videoEl) {
-        // Fallback for video on iOS
-        if (videoEl && videoEl.webkitEnterFullscreen) {
-          videoEl.webkitEnterFullscreen();
-          return;
-        }
-
-        // CSS Fake Fullscreen with rotation
-        if (wrapper.classList.contains('pseudo-fullscreen')) return;
-        
-        wrapper.classList.add('pseudo-fullscreen');
-        document.body.style.overflow = 'hidden';
-
-        let closeBtn = document.createElement('button');
-        closeBtn.innerHTML = '✖ Đóng';
-        closeBtn.className = 'pseudo-close-btn action-btn';
-        closeBtn.onclick = function() {
-          wrapper.classList.remove('pseudo-fullscreen');
-          document.body.style.overflow = '';
-          closeBtn.remove();
-        };
-        wrapper.appendChild(closeBtn);
-      }
-    </script>
   </body>
 </html>

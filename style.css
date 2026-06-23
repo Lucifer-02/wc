@@ -46,33 +46,9 @@ h1 {
 h2.section-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text-main);
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
   margin-bottom: 1rem;
-}
-
-.action-btn {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  padding: 0.5rem 0.8rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: background-color 0.2s;
-}
-
-.action-btn:hover {
-  background-color: #2563eb;
+  color: var(--text-main);
 }
 
 .subtitle {
@@ -105,7 +81,8 @@ h2.section-title {
 .chart-wrapper {
   width: 100%;
   position: relative;
-  height: 600px;
+  height: 70vh;
+  min-height: 400px;
 }
 
 iframe {
@@ -147,53 +124,31 @@ footer {
     margin-bottom: 2rem;
   }
 
-  .section-header {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  h2.section-title {
-    text-align: center;
-  }
-
   .content-section {
     margin-bottom: 3rem;
   }
 
   .chart-wrapper {
-    height: 600px;
+    height: 70vh;
+    min-height: 350px;
   }
 }
 
-/* Pseudo-fullscreen for unsupported browsers (iOS Edge/Safari) */
-.pseudo-fullscreen {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  z-index: 9999 !important;
-  background-color: var(--bg-color) !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-}
-
-@media (orientation: portrait) {
-  .pseudo-fullscreen {
-    width: 100vh !important;
-    height: 100vw !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) rotate(90deg) !important;
+@media (orientation: landscape) and (max-height: 500px) {
+  .container {
+    padding: 1rem;
   }
-}
-
-.pseudo-close-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 10000;
-  background-color: rgba(0, 0, 0, 0.7);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  header {
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  .content-section {
+    margin-bottom: 2rem;
+  }
+  .chart-wrapper {
+    height: 85vh;
+    min-height: 250px;
+  }
 }

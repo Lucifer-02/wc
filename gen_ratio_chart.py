@@ -128,7 +128,7 @@ def main():
     alt.theme.enable("dark")
     final_chart = (
         (lines + hover_catch)
-        .properties(width="container", height=500, background="#1f2937")
+        .properties(width="container", height="container", background="#1f2937")
         .configure_view(strokeWidth=0)
         .configure_axis(
             grid=True,
