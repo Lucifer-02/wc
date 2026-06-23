@@ -66,8 +66,12 @@ h2.section-title {
   margin-bottom: 1rem;
 }
 
-.instruction-mobile {
+.mobile-warning {
   display: none;
+  text-align: center;
+  color: #f87171;
+  font-weight: 500;
+  margin-bottom: 1rem;
 }
 
 .content-section {
@@ -147,7 +151,7 @@ footer {
     display: none;
   }
 
-  .instruction-mobile {
+  .mobile-warning {
     display: block;
   }
 
@@ -156,9 +160,7 @@ footer {
   }
 
   .chart-wrapper {
-    aspect-ratio: 4 / 5;
-    min-height: 550px;
-    height: auto;
+    display: none;
   }
 }
 

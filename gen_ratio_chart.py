@@ -110,7 +110,7 @@ def main():
         tooltip=[
             alt.Tooltip("Player:N", title="Người chơi"),
             alt.Tooltip("Match:N", title="Trận đấu"),
-            alt.Tooltip("Correct_Ratio:Q", title="Tỉ lệ đúng", format=".1f"),
+            alt.Tooltip("Correct_Ratio:Q", title="Tỉ lệ đúng (%)", format=".1f"),
         ],
     )
 
@@ -128,7 +128,11 @@ def main():
     alt.theme.enable("dark")
     final_chart = (
         (lines + hover_catch)
-        .properties(width="container", height="container", background="#1f2937")
+        .properties(
+            width="container",
+            height=500,
+            background="#1f2937",
+        )
         .configure_view(strokeWidth=0)
         .configure_axis(
             grid=True,
@@ -139,13 +143,9 @@ def main():
             labelColor="#9ca3af",
             titleColor="#f9fafb",
         )
-        .configure_legend(
-            labelColor="#9ca3af",
-            titleColor="#f9fafb",
-            orient="bottom",
-            columns=3
-        )
+        .configure_legend(labelColor="#9ca3af", titleColor="#f9fafb")
         .configure_title(color="#f9fafb", fontSize=20, anchor="middle", dy=-10)
+        .interactive()
     )
 
     output_file = "ratio_chart_altair.html"
