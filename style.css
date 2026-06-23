@@ -164,3 +164,36 @@ footer {
     height: 600px;
   }
 }
+
+/* Pseudo-fullscreen for unsupported browsers (iOS Edge/Safari) */
+.pseudo-fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999 !important;
+  background-color: var(--bg-color) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+@media (orientation: portrait) {
+  .pseudo-fullscreen {
+    width: 100vh !important;
+    height: 100vw !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) rotate(90deg) !important;
+  }
+}
+
+.pseudo-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
