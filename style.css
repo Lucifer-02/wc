@@ -97,8 +97,7 @@ h2.section-title {
 .chart-wrapper {
   width: 100%;
   position: relative;
-  aspect-ratio: 16 / 9;
-  min-height: 400px;
+  height: 600px;
 }
 
 iframe {
@@ -181,8 +180,7 @@ footer {
   }
   
   .chart-wrapper {
-    aspect-ratio: 16 / 9;
-    min-height: 400px;
+    height: 600px;
   }
 }
 
