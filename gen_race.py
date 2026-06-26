@@ -163,7 +163,7 @@ class FrameRenderer:
 
         self.ax.set_ylim(-0.6, self.n_players - 0.4)
         self.ax.set_yticks([])
-        self.ax.tick_params(axis="x", labelsize=8)
+        self.ax.tick_params(axis="x", labelbottom=False)
         self.ax.grid(axis="x", linestyle="--", alpha=0.35)
         # self.ax.set_title("Đua Top Búng Tai", fontsize=14, pad=10, fontweight="bold")
         self.ax.xaxis.set_major_locator(ticker.MultipleLocator(20))
