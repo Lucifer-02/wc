@@ -98,10 +98,10 @@ def build_table_html(rows):
         trs += (
             f"\n              <tr>"
             f'<td class="streak-player" data-val="{r["player"]}">{r["player"]}</td>'
-            f'<td class="streak-center streak-win-stat" data-val="{r["current_win"]}" data-label="Thắng HT">{badge(r["current_win"], "win")}</td>'
-            f'<td class="streak-center streak-num streak-win-stat" data-val="{r["max_win"]}" data-label="Thắng DH">{r["max_win"]}</td>'
-            f'<td class="streak-center streak-loss-stat" data-val="{r["current_loss"]}" data-label="Thua HT">{badge(r["current_loss"], "loss")}</td>'
-            f'<td class="streak-center streak-num streak-loss-stat" data-val="{r["max_loss"]}" data-label="Thua DH">{r["max_loss"]}</td>'
+            f'<td class="streak-center" data-val="{r["current_win"]}">{badge(r["current_win"], "win")}</td>'
+            f'<td class="streak-center streak-num" data-val="{r["max_win"]}">{r["max_win"]}</td>'
+            f'<td class="streak-center" data-val="{r["current_loss"]}">{badge(r["current_loss"], "loss")}</td>'
+            f'<td class="streak-center streak-num" data-val="{r["max_loss"]}">{r["max_loss"]}</td>'
             f"</tr>"
         )
 
