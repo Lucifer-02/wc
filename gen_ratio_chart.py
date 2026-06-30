@@ -106,7 +106,7 @@ def main():
         ),
         y=alt.Y(
             "Correct_Ratio:Q",
-            title="Tỉ lệ đoán đúng (%)",
+            title="1 − điểm tích lũy / điểm nếu thua hết (%)",
             scale=alt.Scale(domain=[0, 100]),
             axis=alt.Axis(labelAngle=0),
         ),
@@ -114,7 +114,7 @@ def main():
         tooltip=[
             alt.Tooltip("Player:N", title="Người chơi"),
             alt.Tooltip("Match:N", title="Trận đấu"),
-            alt.Tooltip("Correct_Ratio:Q", title="Tỉ lệ đúng (%)", format=".1f"),
+            alt.Tooltip("Correct_Ratio:Q", title="Tỉ lệ (%)", format=".1f"),
         ],
     )
 
