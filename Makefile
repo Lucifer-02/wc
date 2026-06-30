@@ -3,9 +3,9 @@
 PYTHON = .venv/bin/python
 EXCEL_FILE = wc.xlsx
 
-.PHONY: all ratio race thumbnail chart_thumbnail clean format
+.PHONY: all ratio race thumbnail chart_thumbnail streak clean format
 
-all: ratio race thumbnail chart_thumbnail
+all: ratio race thumbnail chart_thumbnail streak
 
 ratio: ratio_chart_altair.html
 
@@ -14,6 +14,9 @@ race: race.mp4
 thumbnail: thumbnail.jpg
 
 chart_thumbnail: chart_thumbnail.png
+
+streak: gen_streak_table.py $(EXCEL_FILE)
+	$(PYTHON) gen_streak_table.py
 
 ratio_chart_altair.html chart_thumbnail.png: gen_ratio_chart.py $(EXCEL_FILE)
 	$(PYTHON) gen_ratio_chart.py

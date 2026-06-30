@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        background: #1f2937;
+        color: #f9fafb;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 0.875rem;
+        padding: 1rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      thead th {
+        background: #111827;
+        color: #9ca3af;
+        font-weight: 600;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 0.65rem 0.75rem;
+        border-bottom: 1px solid #374151;
+        white-space: nowrap;
+      }
+      thead th.win-col { color: #34d399; }
+      thead th.loss-col { color: #f87171; }
+      tbody tr {
+        border-bottom: 1px solid #374151;
+        transition: background 0.12s;
+      }
+      tbody tr:last-child { border-bottom: none; }
+      tbody tr:hover { background: #374151; }
+      td { padding: 0.5rem 0.75rem; }
+      .player { font-weight: 500; }
+      .center { text-align: center; }
+      .num { font-weight: 600; color: #d1d5db; }
+      .dim { color: #6b7280; }
+      .badge {
+        display: inline-block;
+        font-weight: 700;
+        min-width: 1.75rem;
+        text-align: center;
+        padding: 0.1rem 0.35rem;
+        border-radius: 4px;
+      }
+      .badge.win { color: #34d399; background: rgba(52,211,153,0.12); }
+      .badge.loss { color: #f87171; background: rgba(248,113,113,0.12); }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Người chơi</th>
+          <th class="win-col">Chuỗi thắng<br />hiện tại</th>
+          <th class="win-col">Chuỗi thắng<br />dài nhất</th>
+          <th class="loss-col">Chuỗi thua<br />hiện tại</th>
+          <th class="loss-col">Chuỗi thua<br />dài nhất</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      <tr>
+        <td class="player">Tuấn Tú</td>
+        <td class="center"><span class="badge win">11</span></td>
+        <td class="center num">11</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">6</td>
+      </tr>
+      <tr>
+        <td class="player">Trung Hiếu</td>
+        <td class="center"><span class="badge win">9</span></td>
+        <td class="center num">9</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">5</td>
+      </tr>
+      <tr>
+        <td class="player">Việt Hoàng</td>
+        <td class="center"><span class="badge win">9</span></td>
+        <td class="center num">9</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">5</td>
+      </tr>
+      <tr>
+        <td class="player">Tiến Phát</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">6</td>
+        <td class="center"><span class="badge loss">2</span></td>
+        <td class="center num">7</td>
+      </tr>
+      <tr>
+        <td class="player">Tuấn Linh</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">6</td>
+        <td class="center"><span class="badge loss">2</span></td>
+        <td class="center num">7</td>
+      </tr>
+      <tr>
+        <td class="player">Thái Bình</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">6</td>
+        <td class="center"><span class="badge loss">1</span></td>
+        <td class="center num">6</td>
+      </tr>
+      <tr>
+        <td class="player">Thị Hoài</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">6</td>
+        <td class="center"><span class="badge loss">1</span></td>
+        <td class="center num">6</td>
+      </tr>
+      <tr>
+        <td class="player">Lê Hải</td>
+        <td class="center"><span class="badge win">2</span></td>
+        <td class="center num">6</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">5</td>
+      </tr>
+      <tr>
+        <td class="player">Khắc Thành</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">6</td>
+        <td class="center"><span class="badge loss">1</span></td>
+        <td class="center num">4</td>
+      </tr>
+      <tr>
+        <td class="player">Hải Linh</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">6</td>
+        <td class="center"><span class="badge loss">1</span></td>
+        <td class="center num">4</td>
+      </tr>
+      <tr>
+        <td class="player">Chính Đạt</td>
+        <td class="center"><span class="badge win">2</span></td>
+        <td class="center num">5</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">9</td>
+      </tr>
+      <tr>
+        <td class="player">Tiến Tùng</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">5</td>
+        <td class="center"><span class="badge loss">3</span></td>
+        <td class="center num">7</td>
+      </tr>
+      <tr>
+        <td class="player">Hữu Nghĩa</td>
+        <td class="center"><span class="badge win">1</span></td>
+        <td class="center num">5</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">6</td>
+      </tr>
+      <tr>
+        <td class="player">Thanh Quang</td>
+        <td class="center"><span class="badge win">1</span></td>
+        <td class="center num">5</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">5</td>
+      </tr>
+      <tr>
+        <td class="player">Thanh Vân</td>
+        <td class="center"><span class="badge win">1</span></td>
+        <td class="center num">5</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">5</td>
+      </tr>
+      <tr>
+        <td class="player">Ngọc Khuê</td>
+        <td class="center"><span class="badge win">4</span></td>
+        <td class="center num">4</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">12</td>
+      </tr>
+      <tr>
+        <td class="player">Trung Ngôn</td>
+        <td class="center"><span class="badge win">4</span></td>
+        <td class="center num">4</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">6</td>
+      </tr>
+      <tr>
+        <td class="player">Quốc Anh</td>
+        <td class="center"><span class="badge win">1</span></td>
+        <td class="center num">4</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">6</td>
+      </tr>
+      <tr>
+        <td class="player">Mạnh Dũng</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">4</td>
+        <td class="center"><span class="badge loss">1</span></td>
+        <td class="center num">4</td>
+      </tr>
+      <tr>
+        <td class="player">Duy Tùng</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">3</td>
+        <td class="center"><span class="badge loss">1</span></td>
+        <td class="center num">6</td>
+      </tr>
+      <tr>
+        <td class="player">Đức Anh</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">3</td>
+        <td class="center"><span class="badge loss">1</span></td>
+        <td class="center num">6</td>
+      </tr>
+      <tr>
+        <td class="player">Tuấn Hải</td>
+        <td class="center"><span class="dim">0</span></td>
+        <td class="center num">3</td>
+        <td class="center"><span class="badge loss">1</span></td>
+        <td class="center num">6</td>
+      </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

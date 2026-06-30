@@ -99,6 +99,233 @@ h2.section-title {
   height: 600px;
 }
 
+.streak-controls {
+  margin-bottom: 0.75rem;
+}
+
+.streak-dropdown {
+  position: relative;
+}
+
+.streak-dropdown-btn {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: #1f2937;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-size: 0.875rem;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  transition: border-color 0.15s;
+}
+
+.streak-dropdown-btn:hover,
+.streak-dropdown-btn[aria-expanded="true"] {
+  border-color: #6b7280;
+}
+
+.streak-dropdown-arrow {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+
+.streak-dropdown-btn[aria-expanded="true"] .streak-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.streak-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #1f2937;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  z-index: 100;
+  max-height: 260px;
+  overflow-y: auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.streak-dropdown-menu::-webkit-scrollbar {
+  width: 4px;
+}
+
+.streak-dropdown-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.streak-dropdown-menu::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+
+.streak-check-all {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.streak-check-all:hover {
+  background: var(--border-color);
+}
+
+.streak-check-item {
+  padding: 0.35rem 0.75rem;
+}
+
+.streak-check-item:hover {
+  background: var(--border-color);
+}
+
+.streak-check-all label,
+.streak-check-item label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.streak-check-all label {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.streak-check-all input[type="checkbox"],
+.streak-check-item input[type="checkbox"] {
+  accent-color: #9ca3af;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.streak-wrapper {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #1f2937;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.streak-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.streak-table thead th {
+  background: #111827;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.streak-table thead th:first-child {
+  text-align: left;
+}
+
+.streak-table thead th[data-col] {
+  cursor: pointer;
+  user-select: none;
+}
+
+.streak-table thead th[data-col]:hover {
+  color: var(--text-main);
+}
+
+.streak-table thead th[data-col]::after {
+  content: " ⇅";
+  opacity: 0.3;
+}
+
+.streak-table thead th[data-sort="asc"]::after {
+  content: " ↑";
+  opacity: 1;
+}
+
+.streak-table thead th[data-sort="desc"]::after {
+  content: " ↓";
+  opacity: 1;
+}
+
+.streak-win-col {
+  color: #34d399;
+}
+
+.streak-loss-col {
+  color: #f87171;
+}
+
+.streak-table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.12s;
+}
+
+.streak-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.streak-table tbody tr:hover {
+  background: var(--border-color);
+}
+
+.streak-table td {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.streak-player {
+  font-weight: 500;
+}
+
+.streak-center {
+  text-align: center;
+}
+
+.streak-num {
+  font-weight: 600;
+  color: #d1d5db;
+}
+
+.streak-dim {
+  color: #6b7280;
+}
+
+.streak-badge {
+  display: inline-block;
+  font-weight: 700;
+  min-width: 1.75rem;
+  text-align: center;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.streak-badge.streak-win {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+}
+
+.streak-badge.streak-loss {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.12);
+}
+
 iframe {
   position: absolute;
   top: 0;

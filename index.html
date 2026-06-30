@@ -39,6 +39,56 @@
         </section>
 
         <section class="content-section">
+          <h2 class="section-title">CHUỖI</h2>
+          <div class="streak-controls">
+            <div class="streak-dropdown">
+              <button id="streak-dropdown-btn" class="streak-dropdown-btn" aria-expanded="false">
+                <span id="streak-filter-label">Tất cả người chơi</span>
+                <span class="streak-dropdown-arrow">▾</span>
+              </button>
+              <div id="streak-dropdown-menu" class="streak-dropdown-menu" hidden></div>
+            </div>
+          </div>
+          <div class="streak-wrapper">
+            <!-- STREAK_TABLE_START --><table class="streak-table">
+              <thead>
+                <tr>
+                  <th data-col="0">Người chơi</th>
+                  <th class="streak-win-col" data-col="1">Chuỗi thắng<br />hiện tại</th>
+                  <th class="streak-win-col" data-col="2">Chuỗi thắng<br />dài nhất</th>
+                  <th class="streak-loss-col" data-col="3">Chuỗi thua<br />hiện tại</th>
+                  <th class="streak-loss-col" data-col="4">Chuỗi thua<br />dài nhất</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr><td class="streak-player" data-val="Tuấn Tú">Tuấn Tú</td><td class="streak-center" data-val="11"><span class="streak-badge streak-win">11</span></td><td class="streak-center streak-num" data-val="11">11</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="6">6</td></tr>
+              <tr><td class="streak-player" data-val="Trung Hiếu">Trung Hiếu</td><td class="streak-center" data-val="9"><span class="streak-badge streak-win">9</span></td><td class="streak-center streak-num" data-val="9">9</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="5">5</td></tr>
+              <tr><td class="streak-player" data-val="Việt Hoàng">Việt Hoàng</td><td class="streak-center" data-val="9"><span class="streak-badge streak-win">9</span></td><td class="streak-center streak-num" data-val="9">9</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="5">5</td></tr>
+              <tr><td class="streak-player" data-val="Tiến Phát">Tiến Phát</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="6">6</td><td class="streak-center" data-val="2"><span class="streak-badge streak-loss">2</span></td><td class="streak-center streak-num" data-val="7">7</td></tr>
+              <tr><td class="streak-player" data-val="Tuấn Linh">Tuấn Linh</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="6">6</td><td class="streak-center" data-val="2"><span class="streak-badge streak-loss">2</span></td><td class="streak-center streak-num" data-val="7">7</td></tr>
+              <tr><td class="streak-player" data-val="Thái Bình">Thái Bình</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="6">6</td><td class="streak-center" data-val="1"><span class="streak-badge streak-loss">1</span></td><td class="streak-center streak-num" data-val="6">6</td></tr>
+              <tr><td class="streak-player" data-val="Thị Hoài">Thị Hoài</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="6">6</td><td class="streak-center" data-val="1"><span class="streak-badge streak-loss">1</span></td><td class="streak-center streak-num" data-val="6">6</td></tr>
+              <tr><td class="streak-player" data-val="Lê Hải">Lê Hải</td><td class="streak-center" data-val="2"><span class="streak-badge streak-win">2</span></td><td class="streak-center streak-num" data-val="6">6</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="5">5</td></tr>
+              <tr><td class="streak-player" data-val="Khắc Thành">Khắc Thành</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="6">6</td><td class="streak-center" data-val="1"><span class="streak-badge streak-loss">1</span></td><td class="streak-center streak-num" data-val="4">4</td></tr>
+              <tr><td class="streak-player" data-val="Hải Linh">Hải Linh</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="6">6</td><td class="streak-center" data-val="1"><span class="streak-badge streak-loss">1</span></td><td class="streak-center streak-num" data-val="4">4</td></tr>
+              <tr><td class="streak-player" data-val="Chính Đạt">Chính Đạt</td><td class="streak-center" data-val="2"><span class="streak-badge streak-win">2</span></td><td class="streak-center streak-num" data-val="5">5</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="9">9</td></tr>
+              <tr><td class="streak-player" data-val="Tiến Tùng">Tiến Tùng</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="5">5</td><td class="streak-center" data-val="3"><span class="streak-badge streak-loss">3</span></td><td class="streak-center streak-num" data-val="7">7</td></tr>
+              <tr><td class="streak-player" data-val="Hữu Nghĩa">Hữu Nghĩa</td><td class="streak-center" data-val="1"><span class="streak-badge streak-win">1</span></td><td class="streak-center streak-num" data-val="5">5</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="6">6</td></tr>
+              <tr><td class="streak-player" data-val="Thanh Quang">Thanh Quang</td><td class="streak-center" data-val="1"><span class="streak-badge streak-win">1</span></td><td class="streak-center streak-num" data-val="5">5</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="5">5</td></tr>
+              <tr><td class="streak-player" data-val="Thanh Vân">Thanh Vân</td><td class="streak-center" data-val="1"><span class="streak-badge streak-win">1</span></td><td class="streak-center streak-num" data-val="5">5</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="5">5</td></tr>
+              <tr><td class="streak-player" data-val="Ngọc Khuê">Ngọc Khuê</td><td class="streak-center" data-val="4"><span class="streak-badge streak-win">4</span></td><td class="streak-center streak-num" data-val="4">4</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="12">12</td></tr>
+              <tr><td class="streak-player" data-val="Trung Ngôn">Trung Ngôn</td><td class="streak-center" data-val="4"><span class="streak-badge streak-win">4</span></td><td class="streak-center streak-num" data-val="4">4</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="6">6</td></tr>
+              <tr><td class="streak-player" data-val="Quốc Anh">Quốc Anh</td><td class="streak-center" data-val="1"><span class="streak-badge streak-win">1</span></td><td class="streak-center streak-num" data-val="4">4</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="6">6</td></tr>
+              <tr><td class="streak-player" data-val="Mạnh Dũng">Mạnh Dũng</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="4">4</td><td class="streak-center" data-val="1"><span class="streak-badge streak-loss">1</span></td><td class="streak-center streak-num" data-val="4">4</td></tr>
+              <tr><td class="streak-player" data-val="Duy Tùng">Duy Tùng</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="3">3</td><td class="streak-center" data-val="1"><span class="streak-badge streak-loss">1</span></td><td class="streak-center streak-num" data-val="6">6</td></tr>
+              <tr><td class="streak-player" data-val="Đức Anh">Đức Anh</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="3">3</td><td class="streak-center" data-val="1"><span class="streak-badge streak-loss">1</span></td><td class="streak-center streak-num" data-val="6">6</td></tr>
+              <tr><td class="streak-player" data-val="Tuấn Hải">Tuấn Hải</td><td class="streak-center" data-val="0"><span class="streak-dim">0</span></td><td class="streak-center streak-num" data-val="3">3</td><td class="streak-center" data-val="1"><span class="streak-badge streak-loss">1</span></td><td class="streak-center streak-num" data-val="6">6</td></tr>
+              </tbody>
+            </table><!-- STREAK_TABLE_END -->
+          </div>
+        </section>
+
+        <section class="content-section">
           <p class="instruction instruction-desktop">
           Shift+Click &lt;tên người chơi&gt; để highlight nhiều người chơi.
           </p>
@@ -65,5 +115,130 @@
         <p>&copy; 2026 Bảng Xếp Hạng</p>
       </footer>
     </div>
+    <script>
+      (function () {
+        var table = document.querySelector(".streak-table");
+        if (!table) return;
+        var tbody = table.querySelector("tbody");
+        var headers = Array.from(table.querySelectorAll("thead th[data-col]"));
+
+        // --- Sort ---
+        var sortCol = 2;
+        var sortAsc = false;
+
+        function applySort(col, asc) {
+          sortCol = col;
+          sortAsc = asc;
+          var rows = Array.from(tbody.querySelectorAll("tr"));
+          rows.sort(function (a, b) {
+            var av = a.children[col].dataset.val;
+            var bv = b.children[col].dataset.val;
+            var an = parseFloat(av);
+            var bn = parseFloat(bv);
+            if (!isNaN(an) && !isNaN(bn)) return asc ? an - bn : bn - an;
+            return asc ? av.localeCompare(bv, "vi") : bv.localeCompare(av, "vi");
+          });
+          rows.forEach(function (r) { tbody.appendChild(r); });
+          headers.forEach(function (th) { delete th.dataset.sort; });
+          headers[col].dataset.sort = asc ? "asc" : "desc";
+        }
+
+        headers.forEach(function (th, i) {
+          th.addEventListener("click", function () {
+            applySort(i, sortCol === i ? !sortAsc : i === 0);
+          });
+        });
+
+        headers[sortCol].dataset.sort = sortAsc ? "asc" : "desc";
+
+        // --- Dropdown filter ---
+        var allRows = Array.from(tbody.querySelectorAll("tr"));
+        var playerNames = allRows.map(function (r) { return r.children[0].dataset.val; });
+        var selected = new Set(playerNames);
+
+        var btn = document.getElementById("streak-dropdown-btn");
+        var menu = document.getElementById("streak-dropdown-menu");
+        var labelEl = document.getElementById("streak-filter-label");
+
+        function updateLabel() {
+          if (selected.size === playerNames.length) {
+            labelEl.textContent = "Tất cả người chơi";
+          } else if (selected.size === 0) {
+            labelEl.textContent = "Chưa chọn ai";
+          } else {
+            labelEl.textContent = selected.size + " / " + playerNames.length + " người chơi";
+          }
+        }
+
+        function applyFilter() {
+          allRows.forEach(function (row) {
+            row.hidden = !selected.has(row.children[0].dataset.val);
+          });
+          updateLabel();
+        }
+
+        // "Chọn tất cả" header item
+        var allItem = document.createElement("div");
+        allItem.className = "streak-check-all";
+        var allLabel = document.createElement("label");
+        var allCb = document.createElement("input");
+        allCb.type = "checkbox";
+        allCb.checked = true;
+        allLabel.appendChild(allCb);
+        allLabel.appendChild(document.createTextNode(" Chọn tất cả"));
+        allItem.appendChild(allLabel);
+        menu.appendChild(allItem);
+
+        // Individual player checkboxes
+        var itemCbs = playerNames.map(function (name) {
+          var item = document.createElement("div");
+          item.className = "streak-check-item";
+          var label = document.createElement("label");
+          var cb = document.createElement("input");
+          cb.type = "checkbox";
+          cb.checked = true;
+          cb.addEventListener("change", function () {
+            if (cb.checked) selected.add(name); else selected.delete(name);
+            allCb.checked = selected.size === playerNames.length;
+            allCb.indeterminate = selected.size > 0 && selected.size < playerNames.length;
+            applyFilter();
+          });
+          label.appendChild(cb);
+          label.appendChild(document.createTextNode(" " + name));
+          item.appendChild(label);
+          menu.appendChild(item);
+          return cb;
+        });
+
+        allCb.addEventListener("change", function () {
+          if (allCb.checked) playerNames.forEach(function (n) { selected.add(n); });
+          else selected.clear();
+          itemCbs.forEach(function (cb) { cb.checked = allCb.checked; });
+          applyFilter();
+        });
+
+        // Toggle open/close
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var open = menu.hidden;
+          menu.hidden = !open;
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+
+        document.addEventListener("click", function (e) {
+          if (!menu.contains(e.target) && e.target !== btn) {
+            menu.hidden = true;
+            btn.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            menu.hidden = true;
+            btn.setAttribute("aria-expanded", "false");
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

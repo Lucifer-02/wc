@@ -45,34 +45,38 @@ def main():
                 return 0.0
 
         scores = [parse_float(v) for v in row_vals]
-        # 0 điểm (hoặc rỗng) là đoán đúng (1), 20 điểm (hoặc >0) là đoán sai (0)
-        corrects = [1 if s == 0.0 else 0 for s in scores]
-        data_rows.append(corrects)
+        max_penalty = max(scores) if scores else 0.0
+        data_rows.append((scores, max_penalty))
         indices.append(str(match_name).strip())
 
     n_players = len(player_names)
 
     records = []
-    cumulative_correct = [0] * n_players
+    cumulative_score = [0.0] * n_players
+    cumulative_max = 0.0
 
-    # Thêm điểm Bắt đầu
+    # Thêm điểm Bắt đầu (chưa thua trận nào → tỉ lệ 100%)
     for j, player in enumerate(player_names):
         records.append(
             {
                 "Match": "Bắt đầu",
                 "Match_Index": 0,
                 "Player": player,
-                "Correct_Ratio": 0.0,
+                "Correct_Ratio": 100.0,
             }
         )
 
     for i, match in enumerate(indices):
         match_idx = i + 1
-        corrects = data_rows[i]
+        scores, max_penalty = data_rows[i]
+        cumulative_max += max_penalty
 
         for j in range(n_players):
-            cumulative_correct[j] += corrects[j]
-            ratio = (cumulative_correct[j] / match_idx) * 100.0
+            cumulative_score[j] += scores[j]
+            if cumulative_max > 0:
+                ratio = (1.0 - cumulative_score[j] / cumulative_max) * 100.0
+            else:
+                ratio = 100.0
 
             records.append(
                 {
@@ -97,7 +101,7 @@ def main():
         x=alt.X(
             "Match_Index:Q",
             title="Thứ tự trận",
-            scale=alt.Scale(domain=[1, max_match_idx]),
+            scale=alt.Scale(domain=[0, max_match_idx]),
             axis=alt.Axis(labelAngle=0, tickMinStep=1, format="d"),
         ),
         y=alt.Y(
