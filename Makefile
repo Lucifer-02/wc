@@ -18,7 +18,7 @@ chart_thumbnail: chart_thumbnail.png
 streak: gen_streak_table.py $(EXCEL_FILE)
 	$(PYTHON) gen_streak_table.py
 
-ratio_chart_altair.html chart_thumbnail.png: gen_ratio_chart.py $(EXCEL_FILE)
+ratio_chart_altair.html chart_thumbnail.png &: gen_ratio_chart.py $(EXCEL_FILE)
 	$(PYTHON) gen_ratio_chart.py
 
 race.mp4: gen_race.py $(EXCEL_FILE)
