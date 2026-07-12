@@ -46,7 +46,7 @@ def load_match_data(filepath="wc.xlsx"):
                 return 0.0
 
         scores = [parse_float(v) for v in row_vals]
-        corrects = [1 if s == 0.0 else 0 for s in scores]
+        corrects = [1 if s <= 0.0 else 0 for s in scores]
         corrects_per_match.append(corrects)
 
     return player_names, corrects_per_match
