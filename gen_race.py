@@ -296,20 +296,22 @@ def main():
     if has_audio:
         ffmpeg_cmd.extend(["-i", AUDIO_FILE])
 
-    ffmpeg_cmd.extend([
-        "-vf",
-        "pad=ceil(iw/2)*2:ceil(ih/2)*2",
-        "-c:v",
-        "libx264",
-        "-preset",
-        "slow",
-        "-crf",
-        "28",
-        "-pix_fmt",
-        "yuv420p",
-        "-movflags",
-        "+faststart",
-    ])
+    ffmpeg_cmd.extend(
+        [
+            "-vf",
+            "pad=ceil(iw/2)*2:ceil(ih/2)*2",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "slow",
+            "-crf",
+            "28",
+            "-pix_fmt",
+            "yuv420p",
+            "-movflags",
+            "+faststart",
+        ]
+    )
 
     if has_audio:
         ffmpeg_cmd.extend(["-c:a", "aac", "-b:a", "128k", "-shortest"])

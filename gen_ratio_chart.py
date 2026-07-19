@@ -157,7 +157,9 @@ def main():
     print(f"Đã tạo {output_file}")
 
     # Generate static thumbnail without interactive parameters
-    static_lines = base.mark_line(point=True, interpolate="monotone", clip=True, strokeWidth=2)
+    static_lines = base.mark_line(
+        point=True, interpolate="monotone", clip=True, strokeWidth=2
+    )
     static_chart = (
         static_lines.properties(
             width=800,
@@ -177,7 +179,7 @@ def main():
         .configure_legend(labelColor="#9ca3af", titleColor="#f9fafb")
         .configure_title(color="#f9fafb", fontSize=20, anchor="middle", dy=-10)
     )
-    
+
     thumb_file = "chart_thumbnail.png"
     try:
         static_chart.save(thumb_file, format="png", ppi=144)
